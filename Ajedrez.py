@@ -15,8 +15,8 @@ class Pieza:
         self.tablero=np.zeros((8,8))                    ## creación del tablero
         
     def movimiento(self,fil,colum):                  ## función que realiza un cambio de posición en el tablero
-        i=8-fil
-        j=colum-1
+        i=8-fil                                         ## fila en la matriz
+        j=colum-1                                       ## columna en la matriz
         if self.tablero[i][j]==0:      
             print('El movimiento no es valido \n')
             
@@ -64,7 +64,7 @@ class Pieza:
             i=i+1
             j=j+1
 
-    def ver_hor(self):
+    def ver_hor(self):                              ## funcion para movimientos verticales y horizontales
         i=8-self.fila
         j=self.columna-1
     
@@ -76,7 +76,7 @@ class Pieza:
            
         self.tablero[i][j]=8        
 
-    def rey(self):
+    def rey(self):                                  ## funcion que llena los movimientos para el rey
         i=8-self.fila
         j=self.columna-1
     
@@ -340,6 +340,8 @@ class Pieza:
                 t=int(input())
             self.tipo=t
 
+## funciones
+
 def imp_datos(mat):                                 ## funcion para mostrar en pantalla los datos de manera ordenada
     print('  a   b   c   d   e   f   g   h ')
     j=8
@@ -385,7 +387,7 @@ while t!=1 and t!=2 and t!=3 and t!=4 and t!=5 and t!=6:
    print('La opción no es correcta intente nuevamente') 
    t=int(input())
 
-#%%
+## cuerpo
 
 pieza = Pieza(f, ord(c)-96, t)
 bandera=1
@@ -400,7 +402,7 @@ while ejecutar!=1:
             t=int(input())
         bandera=0
         
-        if ejecutar==2:       
+        if ejecutar==2:    ## Mostrar movimientos para las piezas   
             if pieza.tipo==1:
                 pieza.rey()
                 imp_datos(pieza.tablero)
@@ -423,7 +425,7 @@ while ejecutar!=1:
                     imp_datos(pieza.tablero)
                 else:
                     bandera=1
-        if ejecutar==3:
+        if ejecutar==3:                         ## realizar movimiento con una pieza
             print('Para conocer la posición de la pieza por favor seleccione una columna utilizando la nomenclatura. ')
             c=input()
             while c!='a' and c!='b' and c!='c' and c!='d' and c!='e' and c!='f' and c!='g' and c!='h':
@@ -444,7 +446,7 @@ while ejecutar!=1:
             print('La opción no es correcta intente nuevamente') 
             t=int(input())
         
-        if ejecutar==2:       
+        if ejecutar==2:                     ##mostrar movimiento con una pieza     
             if pieza.tipo==1:
                 pieza.rey()
                 imp_datos(pieza.tablero)                       
@@ -467,7 +469,7 @@ while ejecutar!=1:
                     imp_datos(pieza.tablero)
                 else:
                     bandera=1
-        if ejecutar==3:
+        if ejecutar==3:                     ## realizar movimiento con una pieza
             print('Para conocer la posición de la pieza por favor seleccione una columna utilizando la nomenclatura. ')
             c=input()
             while c!='a' and c!='b' and c!='c' and c!='d' and c!='e' and c!='f' and c!='g' and c!='h':
