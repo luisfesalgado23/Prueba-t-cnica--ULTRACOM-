@@ -14,13 +14,15 @@ class Pieza:
         self.tipo=tipo                                  ## tipo de pieza entre las existentes en el ajedrez
         self.tablero=np.zeros((8,8))                    ## creación del tablero
         
-    def movimiento(self,fila,columna):                  ## función que realiza un cambio de posición en el tablero
-        if self.tablero[fila][columna]==0:      
-            print('El movimiento no es valido')
+    def movimiento(self,fil,colum):                  ## función que realiza un cambio de posición en el tablero
+        i=8-fil
+        j=colum-1
+        if self.tablero[i][j]==0:      
+            print('El movimiento no es valido \n')
             
         else:
-            self.fila=fila
-            self.columna=columna
+            self.fila=fil
+            self.columna=colum
             for i in range(8):                          ## restaurar los valores del tablero
                 for j in range(8):
                     self.tablero[i][j]=0
@@ -132,7 +134,7 @@ class Pieza:
                     self.tablero[i+k-1][j+n-1]=1
             self.tablero[i][j]=8
     
-    def caballo(self):
+    def caballo(self):                              ## funcion para los movimientos del caballo
         i=8-self.fila
         j=self.columna-1
         bandera =0
@@ -310,14 +312,44 @@ class Pieza:
         if i==0 and  j==7:
             self.tablero[i+(2)][j-(1)]=1
             self.tablero[i+(1)][j-(2)]=1    
-            self.tablero[i][j]=88  
+            self.tablero[i][j]=8  
             
         if i==7 and  j==0:
             self.tablero[i-(2)][j+(1)]=1
             self.tablero[i-(1)][j+(2)]=1    
             self.tablero[i][j]=8
         
-    
+    def peon(self):
+        i=8-self.fila
+        j=self.columna-1
+        
+        if i==7 or i>0 and i<6:
+            self.tablero[i-1][j]=1
+            self.tablero[i][j]=8
+        
+        if i==6:
+            for n in range(2):
+                self.tablero[i-n-1][j]=1
+            self.tablero[i][j]=8
+        
+        if i==0:
+            print('Su peón tiene la oportunidad de coronarse. Cual de las siguientes pieza elige:\n2 dama o reina.\n 3 torre.\n 4 alfil.\n 5 caballo.\n ')
+            t=int(input())
+            while  t!=2 and t!=3 and t!=4 and t!=5:
+                print('La opción no es correcta intente nuevamente') 
+                t=int(input())
+            self.tipo=t
+
+def imp_datos(mat):                                 ## funcion para mostrar en pantalla los datos de manera ordenada
+    print('  a   b   c   d   e   f   g   h ')
+    j=8
+    for i in range(17):
+        if (i%2)==0:
+            print('---------------------------------')
+        else:
+            print('| {} | {} | {} | {} | {} | {} | {} | {} | {}'.format(int(mat[8-j][0]),int(mat[8-j][1]),int(mat[8-j][2]),int(mat[8-j][3]),int(mat[8-j][4]),int(mat[8-j][5]),int(mat[8-j][6]),int(mat[8-j][7]), j))
+            j=j-1
+
 ## obtener datos
 
 print('El tablero de ajedrez está compuesto por filas y columnas, las filas están enumeradas del 1-8 de manera descendente. Las colunas por otro lado son nombradas con letras de la a-h, a continuación, se muestra un ejemplo: \n')
@@ -356,23 +388,97 @@ while t!=1 and t!=2 and t!=3 and t!=4 and t!=5 and t!=6:
 #%%
 
 pieza = Pieza(f, ord(c)-96, t)
-
-if pieza.tipo==1:
-    pieza.rey()
-
-if pieza.tipo==2:
-    pieza.diagonal()
-    pieza.ver_hor()
-
-if pieza.tipo==3:
-    pieza.ver_hor()
+bandera=1
+ejecutar=0
+while ejecutar!=1:
     
-if pieza.tipo==4:
-    pieza.diagonal()
-    
-if pieza.tipo==5:
-    pieza.caballo() 
+    if bandera == 1:
+        print('¿que desea hacer? \n 1= Salir. \n 2= Ver movimientos. \n')
+        ejecutar=int(input())
+        while ejecutar!=1 and ejecutar!=2:
+            print('La opción no es correcta intente nuevamente') 
+            t=int(input())
+        bandera=0
+        
+        if ejecutar==2:       
+            if pieza.tipo==1:
+                pieza.rey()
+                imp_datos(pieza.tablero)
+            if pieza.tipo==2:
+                pieza.diagonal()
+                pieza.ver_hor()
+                imp_datos(pieza.tablero)
+            if pieza.tipo==3:
+                pieza.ver_hor()
+                imp_datos(pieza.tablero)
+            if pieza.tipo==4:
+                pieza.diagonal()
+                imp_datos(pieza.tablero)
+            if pieza.tipo==5:
+                pieza.caballo() 
+                imp_datos(pieza.tablero)
+            if pieza.tipo==6:
+                pieza.peon()
+                if pieza.fila!=8:
+                    imp_datos(pieza.tablero)
+                else:
+                    bandera=1
+        if ejecutar==3:
+            print('Para conocer la posición de la pieza por favor seleccione una columna utilizando la nomenclatura. ')
+            c=input()
+            while c!='a' and c!='b' and c!='c' and c!='d' and c!='e' and c!='f' and c!='g' and c!='h':
+                print('La opción no es correcta intente nuevamente') 
+                c=input()
 
-if pieza.tipo==6:
+            print('Para conocer la posición de la pieza por favor seleccione una fila utilizando la nomenclatura. ')
+            f=int(input())
+            while f!=1 and f!=2 and f!=3 and f!=4 and f!=5 and f!=6 and f!=7 and f!=8:
+                print('La opción no es correcta intente nuevamente') 
+                f=int(input())
+            pieza.movimiento(f, ord(c)-96)
+            bandera=1
     
-print (pieza.tablero)
+    if bandera == 0:
+        ejecutar=int(input('¿Que desea hacer? \n 1= Salir. \n 2= Ver movimientos \n 3= Realizar un movimiento'))
+        while ejecutar!=1 and ejecutar!=2 and ejecutar!=3:
+            print('La opción no es correcta intente nuevamente') 
+            t=int(input())
+        
+        if ejecutar==2:       
+            if pieza.tipo==1:
+                pieza.rey()
+                imp_datos(pieza.tablero)                       
+            if pieza.tipo==2:
+                pieza.diagonal()
+                pieza.ver_hor()
+                imp_datos(pieza.tablero)
+            if pieza.tipo==3:
+                pieza.ver_hor()
+                imp_datos(pieza.tablero)
+            if pieza.tipo==4:
+                pieza.diagonal()
+                imp_datos(pieza.tablero)
+            if pieza.tipo==5:
+                pieza.caballo() 
+                imp_datos(pieza.tablero)
+            if pieza.tipo==6:
+                pieza.peon()
+                if pieza.fila!=8:
+                    imp_datos(pieza.tablero)
+                else:
+                    bandera=1
+        if ejecutar==3:
+            print('Para conocer la posición de la pieza por favor seleccione una columna utilizando la nomenclatura. ')
+            c=input()
+            while c!='a' and c!='b' and c!='c' and c!='d' and c!='e' and c!='f' and c!='g' and c!='h':
+                print('La opción no es correcta intente nuevamente') 
+                c=input()
+
+            print('Para conocer la posición de la pieza por favor seleccione una fila utilizando la nomenclatura. ')
+            f=int(input())
+            while f!=1 and f!=2 and f!=3 and f!=4 and f!=5 and f!=6 and f!=7 and f!=8:
+                print('La opción no es correcta intente nuevamente') 
+                f=int(input())
+            pieza.movimiento(f, ord(c)-96)
+            bandera=1
+    
