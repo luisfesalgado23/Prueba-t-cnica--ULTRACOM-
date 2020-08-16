@@ -334,11 +334,11 @@ class Pieza:
         
         if i==0:
             print('Su peón tiene la oportunidad de coronarse. Cual de las siguientes pieza elige:\n2 dama o reina.\n 3 torre.\n 4 alfil.\n 5 caballo.\n ')
-            t=int(input())
-            while  t!=2 and t!=3 and t!=4 and t!=5:
+            t=input()
+            while  t!='2' and t!='3' and t!='4' and t!='5':
                 print('La opción no es correcta intente nuevamente') 
-                t=int(input())
-            self.tipo=t
+                t=input()
+            self.tipo=int(t)
 
 ## funciones
 
@@ -376,33 +376,33 @@ while c!='a' and c!='b' and c!='c' and c!='d' and c!='e' and c!='f' and c!='g' a
    c=input()
 
 print('Para conocer la posición inicial de la pieza por favor seleccione una fila utilizando la nomenclatura nombrada anteriormente. ')
-f=int(input())
-while f!=1 and f!=2 and f!=3 and f!=4 and f!=5 and f!=6 and f!=7 and f!=8:
+f=input()
+while f!='1' and f!='2' and f!='3' and f!='4' and f!='5' and f!='6' and f!='7' and f!='8':
    print('La opción no es correcta intente nuevamente') 
-   f=int(input())
+   f=input()
  
 print('Seleccione el número del tipo de la pieza de entre las enunciadas anterior mente la cual desea  utilizar:')
-t=int(input())
-while t!=1 and t!=2 and t!=3 and t!=4 and t!=5 and t!=6:
+t=input()
+while t!='1' and t!='2' and t!='3' and t!='4' and t!='5' and t!='6':
    print('La opción no es correcta intente nuevamente') 
-   t=int(input())
+   t=input()
 
 ## cuerpo
 
-pieza = Pieza(f, ord(c)-96, t)
+pieza = Pieza(int(f), ord(c)-96, int(t))
 bandera=1
-ejecutar=0
-while ejecutar!=1:
+ejecutar='0'
+while ejecutar!='1':
     
     if bandera == 1:
         print('¿que desea hacer? \n 1= Salir. \n 2= Ver movimientos. \n')
-        ejecutar=int(input())
-        while ejecutar!=1 and ejecutar!=2:
+        ejecutar=input()
+        while ejecutar!='1' and ejecutar!='2':
             print('La opción no es correcta intente nuevamente') 
-            t=int(input())
+            ejecutar=input()
         bandera=0
         
-        if ejecutar==2:    ## Mostrar movimientos para las piezas   
+        if ejecutar=='2':    ## Mostrar movimientos para las piezas   
             if pieza.tipo==1:
                 pieza.rey()
                 imp_datos(pieza.tablero)
@@ -425,7 +425,7 @@ while ejecutar!=1:
                     imp_datos(pieza.tablero)
                 else:
                     bandera=1
-        if ejecutar==3:                         ## realizar movimiento con una pieza
+        if ejecutar=='3':                         ## realizar movimiento con una pieza
             print('Para conocer la posición de la pieza por favor seleccione una columna utilizando la nomenclatura. ')
             c=input()
             while c!='a' and c!='b' and c!='c' and c!='d' and c!='e' and c!='f' and c!='g' and c!='h':
@@ -433,20 +433,20 @@ while ejecutar!=1:
                 c=input()
 
             print('Para conocer la posición de la pieza por favor seleccione una fila utilizando la nomenclatura. ')
-            f=int(input())
-            while f!=1 and f!=2 and f!=3 and f!=4 and f!=5 and f!=6 and f!=7 and f!=8:
+            f=input()
+            while f!='1' and f!='2' and f!='3' and f!='4' and f!='5' and f!='6' and f!='7' and f!='8':
                 print('La opción no es correcta intente nuevamente') 
-                f=int(input())
-            pieza.movimiento(f, ord(c)-96)
+                f=input()
+            pieza.movimiento(int(f), ord(c)-96)
             bandera=1
     
     if bandera == 0:
-        ejecutar=int(input('¿Que desea hacer? \n 1= Salir. \n 2= Ver movimientos \n 3= Realizar un movimiento'))
-        while ejecutar!=1 and ejecutar!=2 and ejecutar!=3:
+        ejecutar=input('¿Que desea hacer? \n 1= Salir. \n 2= Ver movimientos \n 3= Realizar un movimiento')
+        while ejecutar!='1' and ejecutar!='2' and ejecutar!='3':
             print('La opción no es correcta intente nuevamente') 
-            t=int(input())
+            ejecutar=input()
         
-        if ejecutar==2:                     ##mostrar movimiento con una pieza     
+        if ejecutar=='2':                     ##mostrar movimiento con una pieza     
             if pieza.tipo==1:
                 pieza.rey()
                 imp_datos(pieza.tablero)                       
@@ -469,7 +469,7 @@ while ejecutar!=1:
                     imp_datos(pieza.tablero)
                 else:
                     bandera=1
-        if ejecutar==3:                     ## realizar movimiento con una pieza
+        if ejecutar=='3':                     ## realizar movimiento con una pieza
             print('Para conocer la posición de la pieza por favor seleccione una columna utilizando la nomenclatura. ')
             c=input()
             while c!='a' and c!='b' and c!='c' and c!='d' and c!='e' and c!='f' and c!='g' and c!='h':
@@ -477,10 +477,9 @@ while ejecutar!=1:
                 c=input()
 
             print('Para conocer la posición de la pieza por favor seleccione una fila utilizando la nomenclatura. ')
-            f=int(input())
-            while f!=1 and f!=2 and f!=3 and f!=4 and f!=5 and f!=6 and f!=7 and f!=8:
+            f=input()
+            while f!='1' and f!='2' and f!='3' and f!='4' and f!='5' and f!='6' and f!='7' and f!='8':
                 print('La opción no es correcta intente nuevamente') 
-                f=int(input())
-            pieza.movimiento(f, ord(c)-96)
+                f=input()
+            pieza.movimiento(int(f), ord(c)-96)
             bandera=1
-    
