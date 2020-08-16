@@ -49,8 +49,16 @@ class Polinomio:
         return Polinomio(may, new_coef)     ## se devuelve un polimo que es el resultado de la operacion seleccionada
  
     
- ##   def mult_poli(self,pol2):
+    def mult_poli(self,pol2):                           ## multiplicacion de polinomios
+        new_coef=np.zeros((self.grado+pol2.grado)+1)   ## arreglo para guardar los nuevos coeficientes
+        y=0
+        for i in range(len(self.coef)):                 ## se replica la ley distributiva
+            for j in range(len(pol2.coef)):
+                y=self.coef[i]*pol2.coef[j]             ## se deja quieto un valor del polinomio uno y se cambian los del 2 
+                new_coef[i+j]=new_coef[i+j]+y          ## se van guardndo los valores la posicion que corresponde a su exponente, se suman todos los resultados de un mismo exponente
         
+        return Polinomio(self.grado+pol2.grado, new_coef)
+    
     def mult_esca(self,esc):
         new_coef=np.zeros(len(self.coef))   ## arreglo para guardar los nuevos coeficientes
         
@@ -73,14 +81,17 @@ class Polinomio:
 d=[1,4,6,8,4,3,2,1,2,2]
 c=[3,2,1,2,2]
 u=[1,2,3,4,5]
+t=[-2,2,-3,6]
+q=[1,2,-1]
 ga=10
 gb=5
 gc=4
 pol1=Polinomio(ga,d)
 pol2=Polinomio(gb,c)
 pol5=Polinomio(gc,u)
-
-
+x1=Polinomio(3, t)
+x2=Polinomio(2, q)
+x3=x1.mult_poli(x2)
 pol3=pol1.suma_resta(pol2,1)
 pol7=pol2.suma_resta(pol1,1)
 pol4=pol2.suma_resta(pol1,2)
