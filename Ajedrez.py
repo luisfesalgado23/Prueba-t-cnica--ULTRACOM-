@@ -425,20 +425,7 @@ while ejecutar!='1':
                     imp_datos(pieza.tablero)
                 else:
                     bandera=1
-        if ejecutar=='3':                         ## realizar movimiento con una pieza
-            print('Para conocer la posición de la pieza por favor seleccione una columna utilizando la nomenclatura. ')
-            c=input()
-            while c!='a' and c!='b' and c!='c' and c!='d' and c!='e' and c!='f' and c!='g' and c!='h':
-                print('La opción no es correcta intente nuevamente') 
-                c=input()
-
-            print('Para conocer la posición de la pieza por favor seleccione una fila utilizando la nomenclatura. ')
-            f=input()
-            while f!='1' and f!='2' and f!='3' and f!='4' and f!='5' and f!='6' and f!='7' and f!='8':
-                print('La opción no es correcta intente nuevamente') 
-                f=input()
-            pieza.movimiento(int(f), ord(c)-96)
-            bandera=1
+        
     
     if bandera == 0:
         ejecutar=input('¿Que desea hacer? \n 1= Salir. \n 2= Ver movimientos \n 3= Realizar un movimiento')
