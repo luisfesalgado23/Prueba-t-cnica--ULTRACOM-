@@ -21,15 +21,15 @@ class Pieza:
             print('El movimiento no es valido \n')
             
         else:
-            self.fila=fil
-            self.columna=colum
+            self.fila=fil                               ##actualiza el valor de la fila
+            self.columna=colum                          ##actualiza el valor de la columna
             for i in range(8):                          ## restaurar los valores del tablero
                 for j in range(8):
                     self.tablero[i][j]=0
     
     def diagonal(self):                                 ## funcion que llena los movimientos en diagnal
 
-        i=8-self.fila
+        i=8-self.fila                                   
         j=self.columna-1
 
 
@@ -323,16 +323,16 @@ class Pieza:
         i=8-self.fila
         j=self.columna-1
         
-        if i==7 or i>0 and i<6:
+        if i==7 or i>0 and i<6:    ## espacios del tablero que no tienen una condicion especial ene l juego
             self.tablero[i-1][j]=1
             self.tablero[i][j]=8
         
-        if i==6:
+        if i==6:                    ## condicion para fila dos donde el peon puede moverce dos espacios
             for n in range(2):
                 self.tablero[i-n-1][j]=1
             self.tablero[i][j]=8
         
-        if i==0:
+        if i==0:                ## condicion para la coronacion del peon
             print('Su peón tiene la oportunidad de coronarse. Cual de las siguientes pieza elige:\n2 dama o reina.\n 3 torre.\n 4 alfil.\n 5 caballo.\n ')
             t=input()
             while  t!='2' and t!='3' and t!='4' and t!='5':
@@ -342,7 +342,7 @@ class Pieza:
 
 ## funciones
 
-def imp_datos(mat):                                 ## funcion para mostrar en pantalla los datos de manera ordenada
+def imp_datos(mat):                                 ## funcion para mostrar en pantalla los posibles movimientos de manera ordenada
     print('  a   b   c   d   e   f   g   h ')
     j=8
     for i in range(17):
