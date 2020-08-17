@@ -333,7 +333,7 @@ class Pieza:
             self.tablero[i][j]=8
         
         if i==0:                ## condicion para la coronacion del peon
-            print('Su peón tiene la oportunidad de coronarse. Cual de las siguientes pieza elige:\n2 dama o reina.\n 3 torre.\n 4 alfil.\n 5 caballo.\n ')
+            print('Su peón tiene la oportunidad de coronarse. Cual de las siguientes pieza elige:\n 2 dama o reina.\n 3 torre.\n 4 alfil.\n 5 caballo.\n ')
             t=input()
             while  t!='2' and t!='3' and t!='4' and t!='5':
                 print('La opción no es correcta intente nuevamente') 

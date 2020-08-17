@@ -75,9 +75,55 @@ class Polinomio:
             j=(x**(self.grado-i))*self.coef[i] # 
             y=y+j
         return y                                    ## se devielve el valor resultante de evaliar y sumar 
-        
-        
-        
+
+## funciones 
+
+def capturar_poli():                                                ## funcion para capturar los datos del polinomio que desea el usuario.                       
+    bandera=1                                                       ## condicion para ingresar al while
+    
+    while bandera!=0:
+        try:                                                        ## caso ideal o donde se ingresan los datos correctos
+            grado=int(input('Ingrese el grado del polinomio.'))
+            bandera=0
+        except ValueError:                                          ## caso para cuando hay un dato que no es entero
+            print('Por favor ingrese un numero entero.')
+            bandera=1        
+    
+    coeficientes=np.zeros(grado+1)                                  ## creacion del vector que contendra los coeficientes
+   
+    for i in range(len(coeficientes)):
+        bandera2=1                                                  ## condicion para ingresar al while
+    
+        while bandera2!=0:
+             try:                                                   ## caso ideal o donde se ingresan los datos correctos
+                 coeficientes[i]=float(input('Ingrese el coeficiente a({}) del polinomio.'.format(grado-i)))
+                 bandera2=0
+             except ValueError:                                     ## caso para cuando hay un dato que no es un numero
+                    print('Por favor ingrese un numero.')
+                    bandera2=1
+    return Polinomio(grado, coeficientes)                           ## se devuelve el polinomio ingresado por el usuario.
+
+## captura de datos
+
+print('Los polinomios que son la suma de un numero finitos de términos están definidos de la forma a(n)X^(n)+ a(n-1)X^(n-1)+ a(n-2)X^(n-2)+….+ a(2)X^(2)+ a(1)X^(1)+ a(0)X^(0). Donde a es el coeficiente del termino y n el máximo exponente que tendrá el polinomio, esto es conocido como grado del polinomio.')
+print('¿Qué operación desea realizar? \n1. Sumar. \n2. Resta. \n3. Multiplicar. \n4. Multiplicar por un escalar. \n5. Evaluar un polinomio.')
+opc=input()
+while opc!='1' and opc!='2' and opc!='3' and opc!='4' and opc!='5':
+   print('La opción no es correcta intente nuevamente') 
+   opc=input()
+
+
+## cuerpo
+#if opc==1:
+    
+# if opc==2:
+    
+# if opc==3:
+    
+# if opc==4:
+    
+# if opc==5:
+       
 d=[1,4,6,8,4,3,2,1,2,2]
 c=[3,2,1,2,2]
 u=[1,2,3,4,5]
