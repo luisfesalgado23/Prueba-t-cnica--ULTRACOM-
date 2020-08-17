@@ -14,7 +14,7 @@ class Polinomio:
         
     def suma_resta(self,pol2,op):
         ## la resta se hace recibiendo un objeto de tipo polinomio el cual sera el portador del signo negativo en la operacion
-        ## op sera laopcion de ser una suma si vale 1 una resta en cualquier otro caso
+        ## op sera la opcion de ser una suma si vale 1, una resta en cualquier otro caso
         
         if pol2.grado>self.grado:  ## encontrando el polinomio con el mayor grado
            may=len(pol2.coef)
@@ -80,10 +80,10 @@ class Polinomio:
 
 def capturar_poli():                                                ## funcion para capturar los datos del polinomio que desea el usuario.                       
     bandera=1                                                       ## condicion para ingresar al while
-    
+    print('Ingrese los datos del polinomio.')
     while bandera!=0:
         try:                                                        ## caso ideal o donde se ingresan los datos correctos
-            grado=int(input('Ingrese el grado del polinomio.'))
+            grado=int(input('Grado del polinomio.'))
             bandera=0
         except ValueError:                                          ## caso para cuando hay un dato que no es entero
             print('Por favor ingrese un numero entero.')
@@ -103,47 +103,49 @@ def capturar_poli():                                                ## funcion p
                     bandera2=1
     return Polinomio(grado, coeficientes)                           ## se devuelve el polinomio ingresado por el usuario.
 
+def confirmacion(opc):
+    a=['sumar','resta','multiplicar','multiplicar por un escalar','evaluar un polinomio']
+    print('Usted escogió la opción {}, desea continuar con la operación [S/N]'.format(a[opc-1]))
+    cont=input()
+    if opc==2:
+        print('El segundo polinomio que se ingrese sera el que porte el signo negativo')
+    
+    while cont!='S' and cont!='N' and cont!='s' and cont!='n':
+        print('La opción no es correcta intente nuevamente') 
+        cont=input()
+    return cont
+
+def mostrar_pol(pol):
+    print('El resultado de la operacion es:')
+    for i in range(len(pol.coef)):
+        print('{}X^({}) '.format(pol.coef[i],pol.grado-i),end='')
 ## captura de datos
 
 print('Los polinomios que son la suma de un numero finitos de términos están definidos de la forma a(n)X^(n)+ a(n-1)X^(n-1)+ a(n-2)X^(n-2)+….+ a(2)X^(2)+ a(1)X^(1)+ a(0)X^(0). Donde a es el coeficiente del termino y n el máximo exponente que tendrá el polinomio, esto es conocido como grado del polinomio.')
-print('¿Qué operación desea realizar? \n1. Sumar. \n2. Resta. \n3. Multiplicar. \n4. Multiplicar por un escalar. \n5. Evaluar un polinomio.')
+print('¿Qué operación desea realizar? \n1. Sumar. \n2. Resta. \n3. Multiplicar. \n4. Multiplicar por un escalar. \n5. Evaluar un polinomio.\n6. Salir')
 opc=input()
-while opc!='1' and opc!='2' and opc!='3' and opc!='4' and opc!='5':
+while opc!='1' and opc!='2' and opc!='3' and opc!='4' and opc!='5' and opc!='6':
    print('La opción no es correcta intente nuevamente') 
    opc=input()
 
 
 ## cuerpo
-#if opc==1:
+
+if opc=='1' or opc=='2':
     
-# if opc==2:
+        
     
+    cont=confirmacion(int(opc))
+        
+    if cont=='S' or cont=='s':
+        pol1=capturar_poli()
+        pol2=capturar_poli()
+        pol3=pol1.suma_resta(pol2, int(opc))
+        mostrar_pol(pol3)
+        
 # if opc==3:
     
 # if opc==4:
     
 # if opc==5:
-       
-d=[1,4,6,8,4,3,2,1,2,2]
-c=[3,2,1,2,2]
-u=[1,2,3,4,5]
-t=[-2,2,-3,6]
-q=[1,2,-1]
-ga=10
-gb=5
-gc=4
-pol1=Polinomio(ga,d)
-pol2=Polinomio(gb,c)
-pol5=Polinomio(gc,u)
-x1=Polinomio(3, t)
-x2=Polinomio(2, q)
-x3=x1.mult_poli(x2)
-pol3=pol1.suma_resta(pol2,1)
-pol7=pol2.suma_resta(pol1,1)
-pol4=pol2.suma_resta(pol1,2)
-pol8=pol1.suma_resta(pol2,2)
-pol6=pol5.suma_resta(pol2,1)
-pol9=pol2.suma_resta(pol5,2)
 
-p=pol5.evaluar(4)
-pol19=pol1.mult_esca(0.5)
