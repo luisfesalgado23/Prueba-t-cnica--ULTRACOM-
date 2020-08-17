@@ -3,6 +3,7 @@
 Spyder Editor
 
 This is a temporary script file.
+@author: Luis Fernando Salgado
 """
 import numpy as np
 
@@ -13,6 +14,8 @@ class Pieza:
         self.columna=columna                            ## columna donde se encuentra ubicada
         self.tipo=tipo                                  ## tipo de pieza entre las existentes en el ajedrez
         self.tablero=np.zeros((8,8))                    ## creación del tablero
+        ## en todas las funciones se trabaja 'i' para las filas y 'j' para las columnas
+        
         
     def movimiento(self,fil,colum):                  ## función que realiza un cambio de posición en el tablero
         i=8-fil                                         ## fila en la matriz
@@ -110,25 +113,25 @@ class Pieza:
                     self.tablero[i+k-1][j+n-1]=1
             self.tablero[i][j]=8
         
-        if i==0 and j!=0 and j!=7:                  ## extremo inferior del tablero             
+        if i==0 and j!=0 and j!=7:                  ## fila del extremo inferior del tablero             
             for k in range(2):
                 for n in range(3):
                     self.tablero[i+k][j+n-1]=1
             self.tablero[i][j]=8
         
-        if i==7 and j!=0 and j!=7:                  ## extremo superior del tablero
+        if i==7 and j!=0 and j!=7:                  ## fila del extremo superior del tablero
             for k in range(2):
                 for n in range(3):
                     self.tablero[i+k-1][j+n-1]=1
             self.tablero[i][j]=8
         
-        if j==0 and i!=0 and i!=7:                  ## extremo izquierdo del tablero
+        if j==0 and i!=0 and i!=7:                  ## colomna extremo izquierdo del tablero
             for k in range(3):
                 for n in range(2):
                     self.tablero[i+k-1][j+n]=1
             self.tablero[i][j]=8
         
-        if j==7 and i!=0 and i!=7:                  ## extremo derecho del tablero
+        if j==7 and i!=0 and i!=7:                  ## columna del extremo derecho del tablero
             for k in range(3):
                 for n in range(2):
                     self.tablero[i+k-1][j+n-1]=1
@@ -319,11 +322,11 @@ class Pieza:
             self.tablero[i-(1)][j+(2)]=1    
             self.tablero[i][j]=8
         
-    def peon(self):
+    def peon(self):     
         i=8-self.fila
         j=self.columna-1
         
-        if i==7 or i>0 and i<6:    ## espacios del tablero que no tienen una condicion especial ene l juego
+        if i==7 or i>0 and i<6:    ## espacios del tablero que no tienen una condicion especial en el juego
             self.tablero[i-1][j]=1
             self.tablero[i][j]=8
         
